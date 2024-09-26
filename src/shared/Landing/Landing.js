@@ -1,16 +1,32 @@
 import React from "react";
-
+import Typewriter from "typewriter-effect";
 import "./Landing.css";
 
 export default function Landing() {
   return (
     <section class="landing">
       <div class="container">
-        <h1 class="landing__title">
-         
-        </h1>
+        <h1 class="landing__title"></h1>
         <h2 class="landing__subtitle">
-          با آکادمی سبزلرن، برنامه نویسی رو با خیال راحت یاد بگیر و پیشرفت کن.
+          <Typewriter
+            onInit={(typewriter) => {
+              typewriter
+                .typeString(
+                  "با آکادمی سبزلرن، برنامه نویسی رو با خیال راحت یاد بگیر و پیشرفت کن."
+                )
+                .start()
+                .pauseFor(2500)
+                .deleteAll()
+
+                .typeString("ما به هر قیمتی دوره آموزشی تولید نمیکنیم ! ")
+                .start()
+                .pauseFor(2500)
+                .deleteAll();
+            }}
+            options={{
+              loop: true,
+            }}
+          />
         </h2>
         <div class="landing__searchbar">
           <input
