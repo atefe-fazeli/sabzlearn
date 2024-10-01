@@ -6,6 +6,7 @@ import AboutUs from "../../shared/AboutUs/AboutUs";
 import PopularCourses from "../../shared/PopularCourses/PopularCourses";
 import PresellCourses from "../../shared/PresellCourses/PresellCourses";
 import LastArticles from "../../shared/LastArticles/LastArticles";
+import Footer from "../../shared/Footer/Footer";
 
 export default function Index() {
   return (
@@ -16,6 +17,7 @@ export default function Index() {
       <PopularCourses />
       <PresellCourses />
       <LastArticles/>
+      <Footer />
     </>
   );
 }
