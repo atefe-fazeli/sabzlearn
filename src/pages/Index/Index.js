@@ -3,6 +3,9 @@ import Header from "../../shared/Header/Header";
 import "./Index.css";
 import LastCourses from "../../shared/LastCourses/LastCourses";
 import AboutUs from "../../shared/AboutUs/AboutUs";
+import PopularCourses from "../../shared/PopularCourses/PopularCourses";
+import PresellCourses from "../../shared/PresellCourses/PresellCourses";
+import LastArticles from "../../shared/LastArticles/LastArticles";
 
 export default function Index() {
   return (
@@ -10,6 +13,9 @@ export default function Index() {
       <Header />
       <LastCourses />
       <AboutUs/>
+      <PopularCourses />
+      <PresellCourses />
+      <LastArticles/>
     </>
   );
 }
