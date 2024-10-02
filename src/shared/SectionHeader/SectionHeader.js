@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./SectionHeader.css";
+import { Link } from "react-router-dom";
 
 export default function SectionHeader({ title, desc, btnTitle }) {
   return (
@@ -12,10 +13,10 @@ export default function SectionHeader({ title, desc, btnTitle }) {
       {
           btnTitle ? (
             <div class="courses-header__left">
-            <a href="#" class="courses-header__link">
+            <Link to="/courses" class="courses-header__link">
               تمامی دوره ها
               <i class="fas fa-arrow-left courses-header__icon"></i>
-            </a>
+            </Link>
           </div>
           ) : null
       }
