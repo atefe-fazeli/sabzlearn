@@ -5,6 +5,7 @@ import Footer from "./../../shared/Footer/Footer";
 import Breadcrumb from "./../../shared/Breadcrumb/Breadcrumb";
 
 import "./ArticleInfo.css";
+import CommentsTextArea from "../../shared/CommentsTextArea/CommentsTextArea";
 
 export default function ArticleInfo() {
   return (
@@ -235,7 +236,7 @@ export default function ArticleInfo() {
                   </div>
                 </div>
               </div>
-
+              <CommentsTextArea />
             </div>
             <div class="col-4"></div>
           </div>
