@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../../shared/Footer/Footer";
+import Input from "../../shared/Form/Input";
 import Navbar from "../../shared/Navbar/Navbar";
 import Topbar from "../../shared/Topbar/Topbar";
 
@@ -24,26 +25,29 @@ export default function Register() {
           </div>
           <form action="#" class="login-form">
             <div class="login-form__username">
-              <input
-                class="login-form__username-input"
+              <Input 
                 type="text"
                 placeholder="نام کاربری"
+                className="login-form__username-input"
+                element="input"
               />
               <i class="login-form__username-icon fa fa-user"></i>
             </div>
             <div class="login-form__password">
-              <input
-                class="login-form__password-input"
+              <Input 
                 type="text"
                 placeholder="آدرس ایمیل"
+                className="login-form__username-input"
+                element="input"
               />
               <i class="login-form__password-icon fa fa-envelope"></i>
             </div>
             <div class="login-form__password">
-              <input
-                class="login-form__password-input"
-                type="text"
+               <Input 
+                type="password"
                 placeholder="رمز عبور"
+                className="login-form__password-input"
+                element="input"
               />
               <i class="login-form__password-icon fa fa-lock-open"></i>
             </div>
