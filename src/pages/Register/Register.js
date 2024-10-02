@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Footer from "../../Components/Footer/Footer";
-import Navbar from "../../Components/Navbar/Navbar";
-import Topbar from "../../Components/Topbar/Topbar";
+import Footer from "../../shared/Footer/Footer";
+import Navbar from "../../shared/Navbar/Navbar";
+import Topbar from "../../shared/Topbar/Topbar";
 
 import "./Register.css";
 
