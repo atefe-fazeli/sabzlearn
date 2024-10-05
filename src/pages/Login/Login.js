@@ -5,15 +5,38 @@ import Button from "../../shared/Form/Button";
 import Input from "../../shared/Form/Input";
 import Navbar from "../../shared/Navbar/Navbar";
 import Topbar from "../../shared/Topbar/Topbar";
+import { useForm } from "../../hooks/useForm";
+
+import {
+  requiredValidator,
+  minValidator,
+  maxValidator,
+  emailValidator,
+} from "../../validators/rules";
 
 import "./Login.css";
 
 export default function Login() {
+  const [formState, onInputHandler] = useForm(
+    {
+      username: {
+        value: "",
+        isValid: false,
+      },
+      password: {
+        value: "",
+        isValid: false,
+      },
+    },
+    false
+  );
+
+  console.log(formState);
 
   const userLogin = (event) => {
-    event.preventDefault()
-    console.log('User Login');
-  }
+    event.preventDefault();
+    console.log("User Login");
+  };
 
   return (
     <>
@@ -36,29 +59,55 @@ export default function Login() {
             <div className="login-form__username">
               <Input
                 className="login-form__username-input"
+                id="username"
                 type="text"
                 placeholder="نام کاربری یا آدرس ایمیل"
                 element="input"
+                validations={[
+                  requiredValidator(),
+                  minValidator(8),
+                  maxValidator(20),
+                ]}
+                onInputHandler={onInputHandler}
               />
               <i className="login-form__username-icon fa fa-user"></i>
             </div>
             <div className="login-form__password">
               <Input
                 element="input"
+                id="password"
                 type="password"
                 className="login-form__password-input"
                 placeholder="رمز عبور"
+                validations={[
+                  requiredValidator(),
+                  minValidator(8),
+                  maxValidator(18),
+                ]}
+                onInputHandler={onInputHandler}
               />
 
               <i className="login-form__password-icon fa fa-lock-open"></i>
             </div>
-            <Button className="login-form__btn" type="submit" onClick={userLogin} disabled={false}>
-            <i className="login-form__btn-icon fas fa-sign-out-alt"></i>
+            <Button
+              className={`login-form__btn ${
+                formState.isFormValid
+                  ? "login-form__btn-success"
+                  : "login-form__btn-error"
+              }`}
+              type="submit"
+              onClick={userLogin}
+              disabled={!formState.isFormValid}
+            >
+              <i className="login-form__btn-icon fas fa-sign-out-alt"></i>
               <span className="login-form__btn-text">ورود</span>
             </Button>
             <div className="login-form__password-setting">
               <label className="login-form__password-remember">
-                <input className="login-form__password-checkbox" type="checkbox" />
+                <input
+                  className="login-form__password-checkbox"
+                  type="checkbox"
+                />
                 <span className="login-form__password-text">
                   مرا به خاطر داشته باش
                 </span>
