@@ -12,13 +12,17 @@ export default function Topbar() {
     axios
       .get(TopbarLinks)
 
-      .then((data) => {
-        console.log("data topbar", data);
-        setAllTopbarLinks(data);
+      .then((res) => {
+        console.log("data topbar", res);
+        // setAllTopbarLinks(data);
+      })
+      .catch((error) => {
+        console.log(error.response);
       });
   }, []);
 
   const getRandomItemsFromArray = (arr, randomCount) => {
+    console.log("here",0.5 - Math.random())
     const shuffled = [...arr].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, randomCount);
   };
