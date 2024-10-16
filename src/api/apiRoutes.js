@@ -4,6 +4,8 @@ export const RegisterURL = VERSION +"auth/register";
 export const GetUserURL = VERSION +"auth/me";
 export const LoginURL = VERSION +"auth/login";
 export const TopbarLinks = VERSION +"menus/topbar";
+export const AllMenus = VERSION +"menus";
+
 
 
 // export const LogoutURL = VERSION +"Account/logout";
