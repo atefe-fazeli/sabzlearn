@@ -14,21 +14,26 @@ import { useParams } from "react-router-dom";
 export default function CourseInfo() {
   const [comments, setComments] = useState([]);
   const [sessions, setSessions] = useState([]);
+  const [createdAt, setCreatedAt] = useState("");
+  const [updatedAt, setUpdatedAt] = useState("");
   const [courseDetails, setCourseDetails] = useState({});
   const { courseName } = useParams()
   // useEffect(() => {
+    // const localStorageData = JSON.parse(localStorage.getItem("user"));
   //   axios
   //     .get(CourseInfoURL(courseName), {
   //       headers: {
   //         Authorization: `Bearer ${
-  //           JSON.parse(localStorage.getItem("user")).token
+  //            localStorageData === null ? null : localStorageData.token
   //         }`,
   //       },
   //     })
   //     .then((res) => {
-  //       // setComments(courseInfo.comments);
-  //       // setSessions(courseInfo.sessions);
-  //       // setCourseDetails(courseInfo);
+    // setComments(courseInfo.comments);
+    // setSessions(courseInfo.sessions);
+    // setCourseDetails(courseInfo);
+    // setCreatedAt(courseInfo.createdAt);
+    // setUpdatedAt(courseInfo.updatedAt);
   //     });
   // }, []);
   return (
@@ -279,7 +284,7 @@ export default function CourseInfo() {
 
                 {/* Finish Teacher Details */}
 
-                <CommentsTextArea  />
+                {/* <CommentsTextArea  /> */}
               </div>
             </div>
 
@@ -287,6 +292,7 @@ export default function CourseInfo() {
               <div className="courses-info">
                 <div className="course-info">
                   <div className="course-info__register">
+                    {/*isUserRegisteredToThisCourse===false زمانی که کاربر لاگین نکرده باشه مقدار  */}
                     {/* {courseDetails.isUserRegisteredToThisCourse === true ? (
                       <span className="course-info__register-title">
                         <i className="fas fa-graduation-cap course-info__register-icon"></i>
