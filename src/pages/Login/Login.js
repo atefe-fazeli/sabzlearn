@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../shared/Footer/Footer";
 import Button from "../../shared/Form/Button";
 import Input from "../../shared/Form/Input";
@@ -18,7 +18,10 @@ import "./Login.css";
 import axios from "axios";
 import { LoginURL } from "../../api/apiRoutes";
 import AuthContext from "../../context/authContext";
+import ReCAPTCHA from "react-google-recaptcha";
+
 export default function Login() {
+  const navigate = useNavigate();
   const [formState, onInputHandler] = useForm(
     {
       username: {
@@ -44,13 +47,30 @@ export default function Login() {
       .then((res) => {
         console.log(res);
         console.log(res.data);
+        swal({
+          title: "با موفقیت لاگین شدید",
+          icon: "success",
+          buttons: "ورود به پنل",
+        }).then((value) => {
+          navigate("/");
+        });
         authContext.login(res.data.accessToken,{});
       })
       .catch((error) => {
         console.log(error.response);
+        swal({
+          title: "همچین کاربری وجود ندارد",
+          icon: "error",
+          buttons: "تلاش دوباره",
+        });
       });
   };
-
+  const [isGoogleRecaptchaVerify, setIsGoogleRecaptchaVerify] = useState(false)
+  
+  const onChangeHandler = () => {
+    console.log('گوگل ری‌کپچا وریفای شد`');
+    setIsGoogleRecaptchaVerify(true)
+  }
   return (
     <>
       <Topbar />
@@ -102,15 +122,18 @@ export default function Login() {
 
               <i className="login-form__password-icon fa fa-lock-open"></i>
             </div>
+            <div className="login-form__password">
+              <ReCAPTCHA sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" onChange={onChangeHandler} />,
+            </div>
             <Button
               className={`login-form__btn ${
-                formState.isFormValid
+                formState.isFormValid  && isGoogleRecaptchaVerify
                   ? "login-form__btn-success"
                   : "login-form__btn-error"
               }`}
               type="submit"
               onClick={userLogin}
-              disabled={!formState.isFormValid}
+              disabled={!formState.isFormValid && !isGoogleRecaptchaVerify}
             >
               <i className="login-form__btn-icon fas fa-sign-out-alt"></i>
               <span className="login-form__btn-text">ورود</span>
