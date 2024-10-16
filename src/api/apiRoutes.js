@@ -3,6 +3,9 @@ const VERSION = "http://localhost:4000/v1/"
 export const RegisterURL = VERSION +"auth/register";
 export const GetUserURL = VERSION +"auth/me";
 export const LoginURL = VERSION +"auth/login";
+export const TopbarLinks = VERSION +"menus/topbar";
+
+
 // export const LogoutURL = VERSION +"Account/logout";
 // export const GetClientURL =(pageNumber)=> VERSION +`client/6/${pageNumber}`;
 // export const GetClientDetailURL =(id)=> VERSION +`client/${id}`;
