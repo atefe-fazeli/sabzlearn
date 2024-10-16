@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../../shared/Footer/Footer";
 import Button from "../../shared/Form/Button";
@@ -15,7 +15,9 @@ import {
 } from "../../validators/rules";
 
 import "./Login.css";
-
+import axios from "axios";
+import { LoginURL } from "../../api/apiRoutes";
+import AuthContext from "../../context/authContext";
 export default function Login() {
   const [formState, onInputHandler] = useForm(
     {
@@ -30,12 +32,23 @@ export default function Login() {
     },
     false
   );
-
-  console.log(formState);
-
+  const authContext = useContext(AuthContext);
   const userLogin = (event) => {
     event.preventDefault();
-    console.log("User Login");
+    const userData = {
+      identifier: formState.inputs.username.value,
+      password: formState.inputs.password.value,
+    };
+    axios
+      .post(LoginURL, userData)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+        authContext.login(res.data.accessToken,{});
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
   };
 
   return (
