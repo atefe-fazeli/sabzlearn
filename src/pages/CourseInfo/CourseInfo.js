@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Topbar from "./../../shared/Topbar/Topbar";
 import Navbar from "./../../shared/Navbar/Navbar";
 import Footer from "./../../shared/Footer/Footer";
@@ -6,10 +6,31 @@ import Breadcrumb from "../../shared/Breadcrumb/Breadcrumb";
 import CourseDetailBox from "../../shared/CourseDetailBox/CourseDetailBox";
 import CommentsTextArea from "../../shared/CommentsTextArea/CommentsTextArea";
 import Accordion from "react-bootstrap/Accordion";
-
+import { CourseInfoURL } from "../../api/apiRoutes";
 import "./CourseInfo.css";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export default function CourseInfo() {
+  // const [comments, setComments] = useState([]);
+  // const [sessions, setSessions] = useState([]);
+  // const [courseDetails, setCourseDetails] = useState({});
+  // const { courseName } = useParams()
+  // useEffect(() => {
+  //   axios
+  //     .get(CourseInfoURL(courseName), {
+  //       headers: {
+  //         Authorization: `Bearer ${
+  //           JSON.parse(localStorage.getItem("user")).token
+  //         }`,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       // setComments(courseInfo.comments);
+  //       // setSessions(courseInfo.sessions);
+  //       // setCourseDetails(courseInfo);
+  //     });
+  // }, []);
   return (
     <>
       <Topbar />
@@ -238,52 +259,46 @@ export default function CourseInfo() {
                           اصطلاحات مقدماتی مربوط به بک‌اند
                         </Accordion.Header>
                         <Accordion.Body className="introduction__accordion-body">
-                            <div class="introduction__accordion-right">
-                              <span class="introduction__accordion-count">
-                                1
-                              </span>
-                              <i class="fab fa-youtube introduction__accordion-icon"></i>
-                              <a href="#" class="introduction__accordion-link">
-                                معرفی دوره + چرا یادگیری کتابخانه ها ضروری است؟
-                              </a>
-                            </div>
-                            <div class="introduction__accordion-left">
-                              <span class="introduction__accordion-time">
-                                18:34
-                              </span>
-                            </div>
+                          <div class="introduction__accordion-right">
+                            <span class="introduction__accordion-count">1</span>
+                            <i class="fab fa-youtube introduction__accordion-icon"></i>
+                            <a href="#" class="introduction__accordion-link">
+                              معرفی دوره + چرا یادگیری کتابخانه ها ضروری است؟
+                            </a>
+                          </div>
+                          <div class="introduction__accordion-left">
+                            <span class="introduction__accordion-time">
+                              18:34
+                            </span>
+                          </div>
                         </Accordion.Body>
                         <Accordion.Body className="introduction__accordion-body">
-                            <div class="introduction__accordion-right">
-                              <span class="introduction__accordion-count">
-                                1
-                              </span>
-                              <i class="fab fa-youtube introduction__accordion-icon"></i>
-                              <a href="#" class="introduction__accordion-link">
-                                جلسه دوم این فصل
-                              </a>
-                            </div>
-                            <div class="introduction__accordion-left">
-                              <span class="introduction__accordion-time">
-                                18:34
-                              </span>
-                            </div>
+                          <div class="introduction__accordion-right">
+                            <span class="introduction__accordion-count">1</span>
+                            <i class="fab fa-youtube introduction__accordion-icon"></i>
+                            <a href="#" class="introduction__accordion-link">
+                              جلسه دوم این فصل
+                            </a>
+                          </div>
+                          <div class="introduction__accordion-left">
+                            <span class="introduction__accordion-time">
+                              18:34
+                            </span>
+                          </div>
                         </Accordion.Body>
                         <Accordion.Body className="introduction__accordion-body">
-                            <div class="introduction__accordion-right">
-                              <span class="introduction__accordion-count">
-                                1
-                              </span>
-                              <i class="fab fa-youtube introduction__accordion-icon"></i>
-                              <a href="#" class="introduction__accordion-link">
-                                جلسه سوم این فصل
-                              </a>
-                            </div>
-                            <div class="introduction__accordion-left">
-                              <span class="introduction__accordion-time">
-                                18:34
-                              </span>
-                            </div>
+                          <div class="introduction__accordion-right">
+                            <span class="introduction__accordion-count">1</span>
+                            <i class="fab fa-youtube introduction__accordion-icon"></i>
+                            <a href="#" class="introduction__accordion-link">
+                              جلسه سوم این فصل
+                            </a>
+                          </div>
+                          <div class="introduction__accordion-left">
+                            <span class="introduction__accordion-time">
+                              18:34
+                            </span>
+                          </div>
                         </Accordion.Body>
                       </Accordion.Item>
                     </Accordion>
