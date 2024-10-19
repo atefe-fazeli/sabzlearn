@@ -1,10 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./CommentsTextArea.css";
 import AuthContext from "../../context/authContext";
 import { Link } from "react-router-dom";
 
 export default function CommentsTextArea({ comments, submitComment }) {
+  const [newCommentBody, setNewCommentBody] = useState("");
   const authContext = useContext(AuthContext);
+
+  const onChangeHandler = (event) => {
+    setNewCommentBody(event.target.value);
+  };
   return (
     <div class="comments">
       <div class="comments__header">

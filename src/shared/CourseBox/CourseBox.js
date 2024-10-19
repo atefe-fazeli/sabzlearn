@@ -1,79 +1,94 @@
 import React, { useState } from "react";
-import "./CourseBox.css";
+import { Link } from "react-router-dom";
 import CircleSpinner from "../CircleSpinner/CircleSpinner";
 
-export default function CourseBox() {
+import "./CourseBox.css";
+
+export default function CourseBox(props) {
   const [isImgShow, setIsImgShow] = useState(false);
-  function onImageLoaded() {
-    setIsImgShow(true);
-  }
+
+  const onImageLoaded = () => setIsImgShow(true);
+
+  const onImageError = () => {
+    // Codes
+  };
+
   return (
-    <div class="col-4">
-      <div class="course-box">
-        <a href="#">
+    <div className="col-4">
+      <div className="course-box">
+        <Link to={`/course-info/${props.shortName}`}>
           <img
-            src="/images/courses/fareelancer.png"
+            src={props.cover}
+            // src="https://placeimg.com/295/295/any/tech?t=190129384"
             alt="Course img"
-            class="course-box__img"
+            className="course-box__img"
             onLoad={onImageLoaded}
+            onError={onImageError}
           />
           {!isImgShow && <CircleSpinner />}
-        </a>
-        <div class="course-box__main">
-          <a href="#" class="course-box__title">
-            دوره پروژه محور متخصص جنگو
-          </a>
+        </Link>
+        <div className="course-box__main">
+          <Link to={`/course-info/${props.shortName}`} className="course-box__title">
+            {props.name}
+          </Link>
 
-          <div class="course-box__rating-teacher">
-            <div class="course-box__teacher">
-              <i class="fas fa-chalkboard-teacher course-box__teacher-icon"></i>
-              <a href="#" class="course-box__teacher-link">
+          <div className="course-box__rating-teacher">
+            <div className="course-box__teacher">
+              <i className="fas fa-chalkboard-teacher course-box__teacher-icon"></i>
+              <a href="#" className="course-box__teacher-link">
                 رضا دولتی
               </a>
             </div>
-            <div class="course-box__rating">
+            <div className="course-box__rating">
               <img
                 src="/images/svgs/star.svg"
                 alt="rating"
-                class="course-box__star"
+                className="course-box__star"
               />
               <img
                 src="/images/svgs/star_fill.svg"
                 alt="rating"
-                class="course-box__star"
+                className="course-box__star"
               />
               <img
                 src="/images/svgs/star_fill.svg"
                 alt="rating"
-                class="course-box__star"
+                className="course-box__star"
               />
               <img
                 src="/images/svgs/star_fill.svg"
                 alt="rating"
-                class="course-box__star"
+                className="course-box__star"
               />
               <img
                 src="/images/svgs/star_fill.svg"
                 alt="rating"
-                class="course-box__star"
+                className="course-box__star"
               />
             </div>
           </div>
 
-          <div class="course-box__status">
-            <div class="course-box__users">
-              <i class="fas fa-users course-box__users-icon"></i>
-              <span class="course-box__users-text">500</span>
+          <div className="course-box__status">
+            <div className="course-box__users">
+              <i className="fas fa-users course-box__users-icon"></i>
+              <span className="course-box__users-text">500</span>
             </div>
-            <span class="course-box__price">1,000,000</span>
+            <span className="course-box__price">
+              {
+                props.price === 0 ? 'رایگان' : props.price.toLocaleString()
+              }
+            </span>
           </div>
         </div>
 
-        <div class="course-box__footer">
-          <a href="#" class="course-box__footer-link">
+        <div className="course-box__footer">
+          <Link
+            to={`/course-info/${props.shortName}`}
+            className="course-box__footer-link"
+          >
             مشاهده اطلاعات
-            <i class="fas fa-arrow-left course-box__footer-icon"></i>
-          </a>
+            <i className="fas fa-arrow-left course-box__footer-icon"></i>
+          </Link>
         </div>
       </div>
     </div>

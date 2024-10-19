@@ -6,10 +6,11 @@ import Breadcrumb from "../../shared/Breadcrumb/Breadcrumb";
 import CourseDetailBox from "../../shared/CourseDetailBox/CourseDetailBox";
 import CommentsTextArea from "../../shared/CommentsTextArea/CommentsTextArea";
 import Accordion from "react-bootstrap/Accordion";
-import { CourseInfoURL } from "../../api/apiRoutes";
+import { CourseInfoURL, CreateNewCommentURL } from "../../api/apiRoutes";
 import "./CourseInfo.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import swal from 'sweetalert'
 
 export default function CourseInfo() {
   const [comments, setComments] = useState([]);
@@ -17,9 +18,9 @@ export default function CourseInfo() {
   const [createdAt, setCreatedAt] = useState("");
   const [updatedAt, setUpdatedAt] = useState("");
   const [courseDetails, setCourseDetails] = useState({});
-  const { courseName } = useParams()
+  const { courseName } = useParams();
   // useEffect(() => {
-    // const localStorageData = JSON.parse(localStorage.getItem("user"));
+  // const localStorageData = JSON.parse(localStorage.getItem("user"));
   //   axios
   //     .get(CourseInfoURL(courseName), {
   //       headers: {
@@ -29,13 +30,32 @@ export default function CourseInfo() {
   //       },
   //     })
   //     .then((res) => {
-    // setComments(courseInfo.comments);
-    // setSessions(courseInfo.sessions);
-    // setCourseDetails(courseInfo);
-    // setCreatedAt(courseInfo.createdAt);
-    // setUpdatedAt(courseInfo.updatedAt);
+  // setComments(courseInfo.comments);
+  // setSessions(courseInfo.sessions);
+  // setCourseDetails(courseInfo);
+  // setCreatedAt(courseInfo.createdAt);
+  // setUpdatedAt(courseInfo.updatedAt);
   //     });
   // }, []);
+  const submitComment = (newCommentBody) => {
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+
+    axios
+      .post(CreateNewCommentURL, newCommentBody, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorageData.token}`,
+        },
+      })
+
+      .then((res) => {
+        swal({
+          title: "کامنت موردنظر با موفقیت ثبت شد",
+          icon: "success",
+          buttons: "تایید",
+        });
+      });
+  };
   return (
     <>
       <Topbar />
@@ -284,7 +304,8 @@ export default function CourseInfo() {
 
                 {/* Finish Teacher Details */}
 
-                {/* <CommentsTextArea  /> */}
+                {/* <CommentsTextArea  comments={comments}
+                  submitComment={submitComment}/> */}
               </div>
             </div>
 
