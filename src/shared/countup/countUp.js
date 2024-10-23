@@ -13,5 +13,5 @@ export default function CountUp({ endPoint }) {
     }
     return () => clearInterval(interval);
   }, [count]);
-  return <span class="landing-status__count">{count}</span>;
+  return <span className="landing-status__count">{count}</span>;
 }

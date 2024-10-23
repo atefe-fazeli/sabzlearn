@@ -18,9 +18,9 @@ export default function CourseInfo() {
   const [createdAt, setCreatedAt] = useState("");
   const [updatedAt, setUpdatedAt] = useState("");
   const [courseDetails, setCourseDetails] = useState({});
-  
   const { courseName } = useParams();
-  console.log(courseName)
+  
+  // console.log(courseName)
   useEffect(() => {
   const localStorageData = JSON.parse(localStorage.getItem("user"));
     axios
@@ -33,12 +33,12 @@ export default function CourseInfo() {
       })
       .then((res) => {
 
-        console.log(res,"courseinfo")
-  // setComments(courseInfo.comments);
-  // setSessions(courseInfo.sessions);
-  // setCourseDetails(courseInfo);
-  // setCreatedAt(courseInfo.createdAt);
-  // setUpdatedAt(courseInfo.updatedAt);
+     
+  setComments(res.data.comments);
+  setSessions(res.data.sessions);
+  setCourseDetails(res.data);
+  setCreatedAt(res.data.createdAt);
+  setUpdatedAt(res.data.updatedAt);
       });
   }, []);
   const submitComment = (newCommentBody) => {
@@ -88,8 +88,8 @@ export default function CourseInfo() {
               <a href="#" className="course-info__link">
                 آموزش برنامه نویسی فرانت اند
               </a>
-              {/* <h1 className="course-info__title">{courseDetails.name}</h1> */}
-              {/* <p className="course-info__text">{courseDetails.description}</p> */}
+              <h1 className="course-info__title">{courseDetails.name}</h1> 
+             <p className="course-info__text">{courseDetails.description}</p>
               <div className="course-info__social-media">
                 <a href="#" className="course-info__social-media-item">
                   <i className="fab fa-telegram-plane course-info__icon"></i>
@@ -125,21 +125,21 @@ export default function CourseInfo() {
                     <CourseDetailBox
                       icon="graduation-cap"
                       title="وضعیت دوره:"
-                      // text={
-                      //   courseDetails.isComplete === 1
-                      //     ? "به اتمام رسیده"
-                      //     : "در حال برگزاری"
-                      // }
+                      text={
+                        courseDetails.isComplete === 1
+                          ? "به اتمام رسیده"
+                          : "در حال برگزاری"
+                      }
                     />
                     <CourseDetailBox
                       icon="clock"
                       title="زمان برگزاری"
-                      // text={createdAt.slice(0, 10)}
+                      text={createdAt.slice(0, 10)}
                     />
                     <CourseDetailBox
                       icon="calendar-alt"
                       title="آخرین بروزرسانی:"
-                      // text={updatedAt.slice(0, 10)}
+                      text={updatedAt.slice(0, 10)}
                     />
                   </div>
                 </div>
@@ -248,8 +248,8 @@ export default function CourseInfo() {
                     <Accordion defaultActiveKey="0">
                       <Accordion.Item eventKey="0" className="accordion">
                         <Accordion.Header>جلسات دوره</Accordion.Header>
-                        {/* {sessions.map((session, index) => (
-                          <Accordion.Body className="introduction__accordion-body">
+                        {sessions.map((session, index) => (
+                          <Accordion.Body className="introduction__accordion-body" key={session.id}>
                             <div className="introduction__accordion-right">
                               <span className="introduction__accordion-count">
                                 {index + 1}
@@ -268,7 +268,7 @@ export default function CourseInfo() {
                               </span>
                             </div>
                           </Accordion.Body>
-                        ))} */}
+                        ))}
                       </Accordion.Item>
                     </Accordion>
                   </div>
@@ -308,8 +308,8 @@ export default function CourseInfo() {
 
                 {/* Finish Teacher Details */}
 
-                {/* <CommentsTextArea  comments={comments}
-                  submitComment={submitComment}/> */}
+                <CommentsTextArea  comments={comments}
+                  submitComment={submitComment}/>
               </div>
             </div>
 
@@ -317,8 +317,7 @@ export default function CourseInfo() {
               <div className="courses-info">
                 <div className="course-info">
                   <div className="course-info__register">
-                    {/*isUserRegisteredToThisCourse===false زمانی که کاربر لاگین نکرده باشه مقدار  */}
-                    {/* {courseDetails.isUserRegisteredToThisCourse === true ? (
+                    {courseDetails.isUserRegisteredToThisCourse === true ? (
                       <span className="course-info__register-title">
                         <i className="fas fa-graduation-cap course-info__register-icon"></i>
                         دانشجوی دوره هستید
@@ -327,7 +326,7 @@ export default function CourseInfo() {
                       <span className="course-info__register-title">
                         ثبت نام در دوره
                       </span>
-                    )} */}
+                    )}
                   </div>
                 </div>
                 <div className="course-info">
@@ -339,7 +338,7 @@ export default function CourseInfo() {
                           تعداد دانشجو :
                         </span>
                         <span className="course-info__total-sale-number">
-                          {/* {courseDetails.courseStudentsCount} */}
+                          {courseDetails.courseStudentsCount}
                         </span>
                       </div>
                     </div>

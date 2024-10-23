@@ -13,7 +13,7 @@ export default function Breadcrumb({ links }) {
           </div>
           <ul class="breadcrumb__list">
             {links.map((link) => (
-              <li class="breadcrumb__item">
+              <li class="breadcrumb__item" key={link.id}>
                 <Link to={`/${link.to}`} class="breadcrumb__link">
                   {link.title}
                   {

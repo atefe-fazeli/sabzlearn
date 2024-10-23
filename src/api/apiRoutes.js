@@ -7,6 +7,7 @@ export const TopbarLinks = VERSION +"menus/topbar";
 export const AllMenus = VERSION +"menus";
 export const CreateNewCommentURL = VERSION +"comments";
 export const LastCoursesURL = VERSION +"courses";
+export const AllCategoryURL = VERSION +"category";
 
 export const CourseInfoURL =(courseName)=> VERSION +`courses/${courseName}`;
 

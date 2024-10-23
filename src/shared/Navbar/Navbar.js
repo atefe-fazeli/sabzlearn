@@ -38,7 +38,7 @@ export default function Navbar() {
               </li>
 
               {allMenus.map((menu) => (
-                <li className="main-header__item">
+                <li className="main-header__item" key={menu.id}>
                   <Link to={menu.href} className="main-header__link">
                     {menu.title}
                     {menu.submenus.length !== 0 && (
@@ -46,7 +46,7 @@ export default function Navbar() {
                         <i className="fas fa-angle-down main-header__link-icon"></i>
                         <ul className="main-header__dropdown">
                           {menu.submenus.map((submenu) => (
-                            <li className="main-header__dropdown-item">
+                            <li className="main-header__dropdown-item" key={submenu.id}>
                               <Link
                                 to={`course-info/${submenu.href}`}
                                 className="main-header__dropdown-link"
