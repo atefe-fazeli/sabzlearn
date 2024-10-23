@@ -18,25 +18,29 @@ export default function CourseInfo() {
   const [createdAt, setCreatedAt] = useState("");
   const [updatedAt, setUpdatedAt] = useState("");
   const [courseDetails, setCourseDetails] = useState({});
+  
   const { courseName } = useParams();
-  // useEffect(() => {
-  // const localStorageData = JSON.parse(localStorage.getItem("user"));
-  //   axios
-  //     .get(CourseInfoURL(courseName), {
-  //       headers: {
-  //         Authorization: `Bearer ${
-  //            localStorageData === null ? null : localStorageData.token
-  //         }`,
-  //       },
-  //     })
-  //     .then((res) => {
+  console.log(courseName)
+  useEffect(() => {
+  const localStorageData = JSON.parse(localStorage.getItem("user"));
+    axios
+      .get(CourseInfoURL(courseName), {
+        headers: {
+          Authorization: `Bearer ${
+             localStorageData === null ? null : localStorageData.token
+          }`,
+        },
+      })
+      .then((res) => {
+
+        console.log(res,"courseinfo")
   // setComments(courseInfo.comments);
   // setSessions(courseInfo.sessions);
   // setCourseDetails(courseInfo);
   // setCreatedAt(courseInfo.createdAt);
   // setUpdatedAt(courseInfo.updatedAt);
-  //     });
-  // }, []);
+      });
+  }, []);
   const submitComment = (newCommentBody) => {
     const localStorageData = JSON.parse(localStorage.getItem("user"));
 

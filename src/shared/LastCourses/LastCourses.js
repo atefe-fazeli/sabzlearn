@@ -9,7 +9,7 @@ export default function LastCourses() {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    axios.get(LastCoursesURL).then((res) => console.log(res));
+    axios.get(LastCoursesURL).then((res) => setCourses(res.data));
   }, []);
   return (
     <>

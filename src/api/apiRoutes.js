@@ -8,7 +8,7 @@ export const AllMenus = VERSION +"menus";
 export const CreateNewCommentURL = VERSION +"comments";
 export const LastCoursesURL = VERSION +"courses";
 
-// export const CourseInfoURL = VERSION +`courses/${courseName}`;
+export const CourseInfoURL =(courseName)=> VERSION +`courses/${courseName}`;
 
 
 

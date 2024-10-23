@@ -13,16 +13,14 @@ export default function Topbar() {
       .get(TopbarLinks)
 
       .then((res) => {
-        console.log("data topbar", res);
-        // setAllTopbarLinks(data);
+        setAllTopbarLinks(res.data);
       })
       .catch((error) => {
-        console.log(error.response);
+       
       });
   }, []);
 
   const getRandomItemsFromArray = (arr, randomCount) => {
-    console.log("here",0.5 - Math.random())
     const shuffled = [...arr].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, randomCount);
   };

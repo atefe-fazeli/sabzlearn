@@ -15,8 +15,7 @@ export default function Navbar() {
       .get(AllMenus)
 
       .then((res) => {
-        console.log(res);
-        // setAllMenus(res.data);
+        setAllMenus(res.data);
       });
   }, []);
 
@@ -49,7 +48,7 @@ export default function Navbar() {
                           {menu.submenus.map((submenu) => (
                             <li className="main-header__dropdown-item">
                               <Link
-                                to={submenu.href}
+                                to={`course-info/${submenu.href}`}
                                 className="main-header__dropdown-link"
                               >
                                 {submenu.title}

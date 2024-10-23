@@ -45,8 +45,7 @@ export default function Login() {
     axios
       .post(LoginURL, userData)
       .then((res) => {
-        console.log(res);
-        console.log(res.data);
+       
         swal({
           title: "با موفقیت لاگین شدید",
           icon: "success",
@@ -57,7 +56,7 @@ export default function Login() {
         authContext.login(res.data.accessToken,{});
       })
       .catch((error) => {
-        console.log(error.response);
+       
         swal({
           title: "همچین کاربری وجود ندارد",
           icon: "error",
@@ -68,7 +67,6 @@ export default function Login() {
   const [isGoogleRecaptchaVerify, setIsGoogleRecaptchaVerify] = useState(false)
   
   const onChangeHandler = () => {
-    console.log('گوگل ری‌کپچا وریفای شد`');
     setIsGoogleRecaptchaVerify(true)
   }
   return (

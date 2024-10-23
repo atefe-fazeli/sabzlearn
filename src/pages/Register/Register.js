@@ -61,8 +61,6 @@ const authcontext=useContext(AuthContext)
         }
       )
       .then((res) => {
-        console.log(res);
-        console.log(res.data);
        authcontext.login(res.data. accessToken,res.data. user)
       })
       .catch((error)=>{
