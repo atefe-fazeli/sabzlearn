@@ -10,7 +10,7 @@ import { CourseInfoURL, CreateNewCommentURL } from "../../api/apiRoutes";
 import "./CourseInfo.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import swal from 'sweetalert'
+import swal from "sweetalert";
 
 export default function CourseInfo() {
   const [comments, setComments] = useState([]);
@@ -18,29 +18,29 @@ export default function CourseInfo() {
   const [createdAt, setCreatedAt] = useState("");
   const [updatedAt, setUpdatedAt] = useState("");
   const [courseDetails, setCourseDetails] = useState({});
+  const [courseTeacher, setCourseTeacher] = useState({});
   const { courseName } = useParams();
-  
-  // console.log(courseName)
+
+
   useEffect(() => {
-  const localStorageData = JSON.parse(localStorage.getItem("user"));
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
     axios
       .get(CourseInfoURL(courseName), {
         headers: {
           Authorization: `Bearer ${
-             localStorageData === null ? null : localStorageData.token
+            localStorageData === null ? null : localStorageData.token
           }`,
         },
       })
       .then((res) => {
-
-     
-  setComments(res.data.comments);
-  setSessions(res.data.sessions);
-  setCourseDetails(res.data);
-  setCreatedAt(res.data.createdAt);
-  setUpdatedAt(res.data.updatedAt);
+        setComments(res.data.comments);
+        setSessions(res.data.sessions);
+        setCourseDetails(res.data);
+        setCreatedAt(res.data.createdAt);
+        setUpdatedAt(res.data.updatedAt);
+        setCourseTeacher(res.data.creator);
       });
-  }, []);
+  }, [courseName]);
   const submitComment = (newCommentBody) => {
     const localStorageData = JSON.parse(localStorage.getItem("user"));
 
@@ -249,7 +249,7 @@ export default function CourseInfo() {
                       <Accordion.Item eventKey="0" className="accordion">
                         <Accordion.Header>جلسات دوره</Accordion.Header>
                         {sessions.map((session, index) => (
-                          <Accordion.Body className="introduction__accordion-body" key={session.id}>
+                          <Accordion.Body className="introduction__accordion-body">
                             <div className="introduction__accordion-right">
                               <span className="introduction__accordion-count">
                                 {index + 1}
@@ -259,7 +259,7 @@ export default function CourseInfo() {
                                 href="#"
                                 className="introduction__accordion-link"
                               >
-                               {session.title}
+                                {session.title}
                               </a>
                             </div>
                             <div className="introduction__accordion-left">
@@ -287,7 +287,8 @@ export default function CourseInfo() {
                       />
                       <div className="techer-details__header-titles">
                         <a href="#" className="techer-details__header-link">
-                          محمدامین سعیدی راد
+                          {/* محمدامین سعیدی راد */}
+                          {courseTeacher.name}
                         </a>
                         <span className="techer-details__header-skill">
                           Front End & Back End Developer
@@ -308,8 +309,10 @@ export default function CourseInfo() {
 
                 {/* Finish Teacher Details */}
 
-                <CommentsTextArea  comments={comments}
-                  submitComment={submitComment}/>
+                <CommentsTextArea
+                  comments={comments}
+                  submitComment={submitComment}
+                />
               </div>
             </div>
 
