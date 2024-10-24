@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import AuthContext from "../../context/authContext";
 
 import "./Navbar.css";
@@ -32,14 +32,14 @@ export default function Navbar() {
 
             <ul className="main-header__menu">
               <li className="main-header__item">
-                <a href="#" className="main-header__link">
+                <NavLink to="/" className="main-header__link">
                   صفحه اصلی
-                </a>
+                </NavLink>
               </li>
 
               {allMenus.map((menu) => (
                 <li className="main-header__item" key={menu.id}>
-                  <Link to={menu.href} className="main-header__link">
+                  <Link to={`/category-info/${menu.href}`} className="main-header__link">
                     {menu.title}
                     {menu.submenus.length !== 0 && (
                       <>
@@ -48,7 +48,7 @@ export default function Navbar() {
                           {menu.submenus.map((submenu) => (
                             <li className="main-header__dropdown-item" key={submenu.id}>
                               <Link
-                                to={`course-info/${submenu.href}`}
+                                to={`/course-info/${submenu.href}`}
                                 className="main-header__dropdown-link"
                               >
                                 {submenu.title}

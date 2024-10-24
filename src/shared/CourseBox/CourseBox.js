@@ -4,7 +4,8 @@ import CircleSpinner from "../CircleSpinner/CircleSpinner";
 
 import "./CourseBox.css";
 
-export default function CourseBox(props) {
+export default function CourseBox({course}) {
+
   const [isImgShow, setIsImgShow] = useState(false);
 
   const onImageLoaded = () => setIsImgShow(true);
@@ -16,10 +17,9 @@ export default function CourseBox(props) {
   return (
     <div className="col-4">
       <div className="course-box">
-        <Link to={`/course-info/${props.shortName}`}>
+        <Link to={`/course-info/${course.shortName}`}>
           <img
-            src={props.cover}
-            // src="https://placeimg.com/295/295/any/tech?t=190129384"
+            src={course.cover}
             alt="Course img"
             className="course-box__img"
             onLoad={onImageLoaded}
@@ -28,15 +28,15 @@ export default function CourseBox(props) {
           {!isImgShow && <CircleSpinner />}
         </Link>
         <div className="course-box__main">
-          <Link to={`/course-info/${props.shortName}`} className="course-box__title">
-            {props.name}
+          <Link to={`/course-info/${course.shortName}`} className="course-box__title">
+            {course.name}
           </Link>
 
           <div className="course-box__rating-teacher">
             <div className="course-box__teacher">
               <i className="fas fa-chalkboard-teacher course-box__teacher-icon"></i>
               <a href="#" className="course-box__teacher-link">
-                رضا دولتی
+              {course.creator}
               </a>
             </div>
             <div className="course-box__rating">
@@ -75,7 +75,7 @@ export default function CourseBox(props) {
             </div>
             <span className="course-box__price">
               {
-                props.price === 0 ? 'رایگان' : props.price.toLocaleString()
+                course.price === 0 ? 'رایگان' : course.price.toLocaleString()
               }
             </span>
           </div>
@@ -83,7 +83,7 @@ export default function CourseBox(props) {
 
         <div className="course-box__footer">
           <Link
-            to={`/course-info/${props.shortName}`}
+            to={`/course-info/${course.shortName}`}
             className="course-box__footer-link"
           >
             مشاهده اطلاعات

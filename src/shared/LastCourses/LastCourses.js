@@ -24,7 +24,7 @@ export default function LastCourses() {
             <div class="container">
               <div class="row">
                 {courses.splice(0, 6).map((course) => (
-                  <CourseBox {...course} />
+                  <CourseBox course={course}/>
                 ))}
               </div>
             </div>

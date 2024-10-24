@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Topbar from "./../../shared/Topbar/Topbar";
 import Navbar from "./../../shared/Navbar/Navbar";
 import Breadcrumb from "./../../shared/Breadcrumb/Breadcrumb";
@@ -6,8 +6,16 @@ import Footer from "./../../shared/Footer/Footer";
 import CourseBox from "./../../shared/CourseBox/CourseBox";
 
 import "./Courses.css";
+import axios from "axios";
+import { AllcoursesURL } from "../../api/apiRoutes";
 
 export default function Courses() {
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    axios.get(AllcoursesURL).then((res) => setCourses(res.data));
+  }, []);
+
   return (
     <>
       <Topbar />
@@ -30,14 +38,9 @@ export default function Courses() {
           <div className="courses-content">
             <div className="container">
               <div className="row">
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
+                {courses.map((course) => (
+                  <CourseBox course={course} key={course.id} />
+                ))}
               </div>
             </div>
           </div>
