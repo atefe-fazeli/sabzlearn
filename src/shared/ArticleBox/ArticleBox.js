@@ -1,30 +1,34 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import "./ArticleBox.css";
 
-export default function ArticleBox({ title, desc, cover }) {
+export default function ArticleBox({article}) {
   return (
     <div className="col-4">
       <div className="article-card">
         <div className="article-card__header">
-          <a href="#" className="article-card__link-img">
+          <Link
+            to={`/article-info/${article.shortName}`}
+            className="article-card__link-img"
+          >
             <img
-              src={cover}
+              src={article.cover}
               className="article-card__img"
               alt="Article Cover"
             />
-          </a>
+          </Link>
         </div>
         <div className="article-card__content">
-          <a href="#" className="article-card__link">
-            {title}
-          </a>
-          <p className="article-card__text">
-            {desc}  
-          </p>
-          <a href="#" className="article-card__btn">
+          <Link
+            to={`/article-info/${article.shortName}`}
+            className="article-card__link"
+          >
+            {article.title}
+          </Link>
+          <p className="article-card__text">{article.description}</p>
+          <Link to={`/article-info/${article.shortName}`} className="article-card__btn">
             بیشتر بخوانید
-          </a>
+          </Link>
         </div>
       </div>
     </div>

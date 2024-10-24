@@ -11,6 +11,9 @@ export const AllCategoryURL = VERSION +"category";
 export const CategoryURL =(categoryName)=> VERSION +`courses/category/${categoryName}`;
 export const AllcoursesURL = VERSION +"courses";
 export const CourseInfoURL =(courseName)=> VERSION +`courses/${courseName}`;
+export const AllArticlesURL = VERSION +"articles";
+export const ArticleInfoURL =(articleName)=> VERSION +`articles/${articleName}`;
+
 
 
 

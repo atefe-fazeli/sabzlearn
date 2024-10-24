@@ -1,35 +1,34 @@
-import React from "react";
-import SectionHeader from "./../SectionHeader/SectionHeader";
-
-import "./LastArticles.css";
+import React, { useEffect, useState } from "react";
 import ArticleBox from "../ArticleBox/ArticleBox";
+import SectionHeader from "./../SectionHeader/SectionHeader";
+import "./LastArticles.css";
+import { AllArticlesURL } from "../../api/apiRoutes";
+import axios from "axios";
 
 export default function LastArticles() {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    axios.get(AllArticlesURL)
+      .then((res) => {
+        setArticles(res.data);
+      });
+  }, []);
+
   return (
-    <section class="articles">
-      <div class="container">
+    <section className="articles">
+      <div className="container">
         <SectionHeader
           title="جدیدترین مقاله ها"
           desc="پیش به سوی ارتقای دانش"
           btnTitle="تمامی مقاله ها"
         />
-        <div class="articles__content">
-          <div class="row">
-            <ArticleBox
-              title="نحوه نصب کتابخانه در پایتون | آموزش نصب کتابخانه پایتون"
-              cover="images/blog/3.jpg"
-              desc="زبان پایتون هم مانند دیگر زبان­های برنامه نویسی رایج، دارای کتابخانه های مختلفی برای تسریع..."
-            />
-            <ArticleBox
-              title="نحوه نصب کتابخانه در پایتون | آموزش نصب کتابخانه پایتون"
-              cover="images/blog/3.jpg"
-              desc="زبان پایتون هم مانند دیگر زبان­های برنامه نویسی رایج، دارای کتابخانه های مختلفی برای تسریع..."
-            />
-            <ArticleBox
-              title="نحوه نصب کتابخانه در پایتون | آموزش نصب کتابخانه پایتون"
-              cover="images/blog/3.jpg"
-              desc="زبان پایتون هم مانند دیگر زبان­های برنامه نویسی رایج، دارای کتابخانه های مختلفی برای تسریع..."
-            />
+
+        <div className="articles__content">
+          <div className="row">
+            {articles.slice(0, 3).map((article) => (
+              <ArticleBox article={article} key={article.id}/>
+            ))}
           </div>
         </div>
       </div>
