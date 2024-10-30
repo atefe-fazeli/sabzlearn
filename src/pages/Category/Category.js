@@ -11,11 +11,48 @@ import { useParams } from "react-router-dom";
 
 export default function Category() {
   const [courses, setCourses] = useState([]);
+  const [orderedCourses, setOrderedCourses] = useState([]);
+  const [shownCourses, setShownCourses] = useState([]);
+  const [status, setStatus] = useState("default");
+  const [statusTitle, setStatusTitle] = useState("مرتب سازی پیش فرض");
   const { categoryName } = useParams();
-  const [shownCourses, setShownCourses] = useState([])
   useEffect(() => {
-    axios.get(CategoryURL(categoryName)).then((res) => setCourses(res.data));
+    axios.get(CategoryURL(categoryName)).then((res) => {
+      setCourses(res.data);
+      setOrderedCourses(res.data);
+    });
   }, [categoryName]);
+
+  useEffect(() => {
+    switch (status) {
+      case "free": {
+        const freeCourses = courses.filter((course) => course.price === 0);
+        setOrderedCourses(freeCourses);
+        break;
+      }
+      case "money": {
+        const notFreeCourses = courses.filter((course) => course.price !== 0);
+        setOrderedCourses(notFreeCourses);
+        break;
+      }
+      case "last": {
+        setOrderedCourses(courses);
+        break;
+      }
+      case "first": {
+        const reversedCourses = courses.slice().reverse();
+        setOrderedCourses(reversedCourses);
+        break;
+      }
+      default: {
+        setOrderedCourses(courses);
+      }
+    }
+  }, [status]);
+
+  const statusTitleChangeHandler = (event) => {
+    setStatusTitle(event.target.textContent);
+  };
   return (
     <>
       <Topbar />
@@ -43,27 +80,73 @@ export default function Category() {
 
                         <div className="courses-top-bar__selection">
                           <span className="courses-top-bar__selection-title">
-                            مرتب سازی پیش فرض
+                            {/* مرتب سازی پیش فرض */}
+                            {statusTitle}
                             <i className="fas fa-angle-down courses-top-bar__selection-icon"></i>
                           </span>
                           <ul className="courses-top-bar__selection-list">
-                            <li className="courses-top-bar__selection-item courses-top-bar__selection-item--active">
+                            <li
+                              className="courses-top-bar__selection-item courses-top-bar__selection-item--active"
+                              onClick={(event) => {
+                                setStatus("مرتب سازی پیش فرض");
+                                statusTitleChangeHandler(event);
+                              }}
+                            >
                               مرتب سازی پیش فرض
                             </li>
-                            <li className="courses-top-bar__selection-item">
-                              مربت سازی بر اساس محبوبیت
+                            <li
+                              className="courses-top-bar__selection-item"
+                              onClick={(event) => {
+                                setStatus("free");
+                                statusTitleChangeHandler(event);
+                              }}
+                            >
+                              مرتب سازی دوره های رایگان
                             </li>
-                            <li className="courses-top-bar__selection-item">
-                              مربت سازی بر اساس امتیاز
+                            <li
+                              className="courses-top-bar__selection-item"
+                              onClick={(event) => {
+                                setStatus("money");
+                                statusTitleChangeHandler(event);
+                              }}
+                            >
+                              مرتب سازی دوره های پولی
                             </li>
-                            <li className="courses-top-bar__selection-item">
-                              مربت سازی بر اساس آخرین
+                            <li
+                              className="courses-top-bar__selection-item"
+                              onClick={(event) => {
+                                setStatus("last");
+                                statusTitleChangeHandler(event);
+                              }}
+                            >
+                              مرتب سازی بر اساس آخرین
                             </li>
-                            <li className="courses-top-bar__selection-item">
-                              مربت سازی بر اساس ارزان ترین
+                            <li
+                              className="courses-top-bar__selection-item"
+                              onClick={(event) => {
+                                setStatus("first");
+                                statusTitleChangeHandler(event);
+                              }}
+                            >
+                              مرتب سازی بر اساس اولین
                             </li>
-                            <li className="courses-top-bar__selection-item">
-                              مربت سازی بر اساس گران ترین
+                            <li
+                              className="courses-top-bar__selection-item"
+                              onClick={(event) => {
+                                setStatus("cheap");
+                                statusTitleChangeHandler(event);
+                              }}
+                            >
+                              مرتب سازی بر اساس ارزان ترین
+                            </li>
+                            <li
+                              className="courses-top-bar__selection-item"
+                              onClick={(event) => {
+                                setStatus("expensive");
+                                statusTitleChangeHandler(event);
+                              }}
+                            >
+                              مرتب سازی بر اساس گران ترین
                             </li>
                           </ul>
                         </div>
@@ -80,11 +163,22 @@ export default function Category() {
                         </form>
                       </div>
                     </div>
-                    {shownCourses.map((course) => (
-                      <CourseBox course={course} key={course.id} />
-                    ))}
+                    {shownCourses.length === 0 ? (
+                      <div className="alert alert-warning">
+                        هیچ دوره‌ای برای 
+                        {" "}{statusTitle}{" "}
+                        وجود ندارد
+                      </div>
+                    ) : (
+                      <>
+                        {shownCourses.map((course) => (
+                          <CourseBox course={course}/>
+                        ))}
+                      </>
+                    )}
+
                     <Pagination
-                      items={courses}
+                      items={orderedCourses}
                       itemsCount={3}
                       pathname={`/category-info/${categoryName}`}
                       setShownCourses={setShownCourses}
