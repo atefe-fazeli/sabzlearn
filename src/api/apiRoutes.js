@@ -13,6 +13,8 @@ export const AllcoursesURL = VERSION +"courses";
 export const CourseInfoURL =(courseName)=> VERSION +`courses/${courseName}`;
 export const AllArticlesURL = VERSION +"articles";
 export const ArticleInfoURL =(articleName)=> VERSION +`articles/${articleName}`;
+export const PresellCoursesURL = VERSION +"courses/presell";
+
 
 
 

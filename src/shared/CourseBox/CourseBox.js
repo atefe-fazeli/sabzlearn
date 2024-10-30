@@ -4,7 +4,7 @@ import CircleSpinner from "../CircleSpinner/CircleSpinner";
 
 import "./CourseBox.css";
 
-export default function CourseBox({course}) {
+export default function CourseBox({course,isSlider}) {
 
   const [isImgShow, setIsImgShow] = useState(false);
 
@@ -15,7 +15,7 @@ export default function CourseBox({course}) {
   };
 
   return (
-    <div className="col-4">
+    <div className={`${!isSlider&&"col-4"}`}>
       <div className="course-box">
         <Link to={`/course-info/${course.shortName}`}>
           <img
