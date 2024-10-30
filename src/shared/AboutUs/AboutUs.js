@@ -8,10 +8,10 @@ export default function AboutUs() {
   return (
     <div className="about-us">
       <div className="container">
-        <SectionHeader
+        {/* <SectionHeader
           title="ما چه کمکی بهتون میکنیم؟"
           desc="از اونجایی که آکادمی آموزشی سبزلرن یک آکادمی خصوصی هست"
-        />
+        /> */}
 
         <div className="container">
           <div className="row">

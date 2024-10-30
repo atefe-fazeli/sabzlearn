@@ -10,8 +10,9 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 export default function Category() {
-  const [courses,setCourses]=useState([])
-  const{categoryName}=useParams()
+  const [courses, setCourses] = useState([]);
+  const { categoryName } = useParams();
+  const [shownCourses, setShownCourses] = useState([])
   useEffect(() => {
     axios.get(CategoryURL(categoryName)).then((res) => setCourses(res.data));
   }, [categoryName]);
@@ -79,10 +80,15 @@ export default function Category() {
                         </form>
                       </div>
                     </div>
-                    {courses.map((course) => (
-                     <CourseBox course={course} key={course.id}/>
+                    {shownCourses.map((course) => (
+                      <CourseBox course={course} key={course.id} />
                     ))}
-                    <Pagination />
+                    <Pagination
+                      items={courses}
+                      itemsCount={3}
+                      pathname={`/category-info/${categoryName}`}
+                      setShownCourses={setShownCourses}
+                    />
                   </>
                 )}
               </div>

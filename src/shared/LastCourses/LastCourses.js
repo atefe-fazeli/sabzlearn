@@ -19,6 +19,7 @@ export default function LastCourses() {
             title="جدیدترین دوره ها"
             desc="سکوی پرتاپ شما به سمت موفقیت"
             btnTitle="تمامی دوره ها"
+            pathName="/courses/1"
           />
           <div class="courses-content">
             <div class="container">

@@ -7,10 +7,10 @@ export default function PresellCourses() {
   return (
     <div class="popular">
       <div class="container">
-        <SectionHeader
+        {/* <SectionHeader
           title='دوره های در حال پیش فروش'
           desc='متن تستی برای توضیحات دوره های پیش فروش'
-        />
+        /> */}
       </div>
     </div>
   );

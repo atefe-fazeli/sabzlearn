@@ -4,15 +4,14 @@ import SectionHeader from "./../SectionHeader/SectionHeader";
 import "./LastArticles.css";
 import { AllArticlesURL } from "../../api/apiRoutes";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export default function LastArticles() {
   const [articles, setArticles] = useState([]);
-
   useEffect(() => {
-    axios.get(AllArticlesURL)
-      .then((res) => {
-        setArticles(res.data);
-      });
+    axios.get(AllArticlesURL).then((res) => {
+      setArticles(res.data);
+    });
   }, []);
 
   return (
@@ -22,12 +21,13 @@ export default function LastArticles() {
           title="جدیدترین مقاله ها"
           desc="پیش به سوی ارتقای دانش"
           btnTitle="تمامی مقاله ها"
+          pathName="/articles/1"
         />
 
         <div className="articles__content">
           <div className="row">
             {articles.slice(0, 3).map((article) => (
-              <ArticleBox article={article} key={article.id}/>
+              <ArticleBox article={article} key={article.id} />
             ))}
           </div>
         </div>
