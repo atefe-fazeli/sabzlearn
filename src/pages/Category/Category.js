@@ -15,6 +15,7 @@ export default function Category() {
   const [shownCourses, setShownCourses] = useState([]);
   const [status, setStatus] = useState("default");
   const [statusTitle, setStatusTitle] = useState("مرتب سازی پیش فرض");
+  const [searchValue, setSearchValue] = useState('')
   const { categoryName } = useParams();
   useEffect(() => {
     axios.get(CategoryURL(categoryName)).then((res) => {
@@ -53,6 +54,11 @@ export default function Category() {
   const statusTitleChangeHandler = (event) => {
     setStatusTitle(event.target.textContent);
   };
+  const searchValueChangeHandler = (event) => {
+    setSearchValue(event.target.value)
+    const filteredCourses = courses.filter(course => course.name.includes(event.target.value))
+    setOrderedCourses(filteredCourses) 
+  }
   return (
     <>
       <Topbar />
@@ -158,6 +164,8 @@ export default function Category() {
                             type="text"
                             className="courses-top-bar__input"
                             placeholder="جستجوی دوره ..."
+                            value={searchValue}
+                            onChange={searchValueChangeHandler}
                           />
                           <i className="fas fa-search courses-top-bar__search-icon"></i>
                         </form>
