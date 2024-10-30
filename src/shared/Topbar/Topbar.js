@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./Topbar.css";
 import { TopbarLinks } from "../../api/apiRoutes";
 import axios from "axios";
 
-export default function Topbar() {
+export default memo(function Topbar() {
   const [allTopbarLinks, setAllTopbarLinks] = useState([]);
 
   useEffect(() => {
@@ -15,9 +15,7 @@ export default function Topbar() {
       .then((res) => {
         setAllTopbarLinks(res.data);
       })
-      .catch((error) => {
-       
-      });
+      .catch((error) => {});
   }, []);
 
   const getRandomItemsFromArray = (arr, randomCount) => {
@@ -58,4 +56,4 @@ export default function Topbar() {
       </div>
     </div>
   );
-}
+});

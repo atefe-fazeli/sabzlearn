@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useRoutes } from "react-router-dom";
 import AuthContext from "./context/authContext";
 import routes from "./routes";
@@ -16,8 +16,9 @@ export default function App() {
   const login = (token, user) => {
     setToken(token);
     setIsLoggedIn(true);
-    localStorage.setItem("user", JSON.stringify({ token }));
     setUserInfos(user);
+    localStorage.setItem("user", JSON.stringify({ token }));
+    console.log("login function is here",user)
   };
 
   const logout = () => {
@@ -26,7 +27,7 @@ export default function App() {
     localStorage.removeItem("user");
   };
   useEffect(() => {
-    let localStorageUser = JSON.parse(localStorage.getItem("user"));
+    const localStorageUser = JSON.parse(localStorage.getItem("user"));
     if (localStorageUser) {
       axios
         .get(
