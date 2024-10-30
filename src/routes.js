@@ -6,6 +6,7 @@ import Courses from "./pages/Courses/Courses"
 import Login from "./pages/Login/Login"
 import Register from "./pages/Register/Register"
 import Articles from "./pages/Articles/Articles"
+import Contact from "./pages/Contact/Contact"
 
 const routes = [
     { path: '/', element: <Index /> },
@@ -16,6 +17,8 @@ const routes = [
     { path: '/articles/:page', element: <Articles /> },
     { path: '/login', element: <Login /> },
     { path: '/register', element: <Register /> },
+    { path: '/contact', element: <Contact /> },
+
 ]
 
 export default routes

@@ -2,6 +2,7 @@ import React from "react";
 import FooterItem from "../FooterItem/FooterItem";
 
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -84,6 +85,11 @@ export default function Footer() {
                   <a href="#" className="footer-widgets__link">
                     آموزش پایتون
                   </a>
+                </div>
+                <div className="col-6">
+                  <Link to="/contact" className="footer-widgets__link">
+                    ارتباط با ما
+                  </Link>
                 </div>
               </div>
             </FooterItem>
