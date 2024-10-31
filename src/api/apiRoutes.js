@@ -16,6 +16,8 @@ export const ArticleInfoURL =(articleName)=> VERSION +`articles/${articleName}`;
 export const PresellCoursesURL = VERSION +"courses/presell";
 export const PopularCoursesURL = VERSION +"courses/popular";
 export const ContactURL = VERSION +"contact";
+export const NewsletterURL = VERSION +"newsletters";
+
 
 
 

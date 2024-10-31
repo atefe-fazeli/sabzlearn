@@ -5,13 +5,13 @@ import CircleSpinner from "../CircleSpinner/CircleSpinner";
 import "./CourseBox.css";
 
 export default function CourseBox({course,isSlider}) {
-
+console.log(course,"course is here")
   const [isImgShow, setIsImgShow] = useState(false);
 
   const onImageLoaded = () => setIsImgShow(true);
 
   const onImageError = () => {
-    // Codes
+    setIsImgShow(true)
   };
 
   return (
