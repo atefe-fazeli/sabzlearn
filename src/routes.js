@@ -20,7 +20,18 @@ const routes = [
     { path: '/register', element: <Register /> },
     { path: '/contact', element: <Contact /> },
     { path: '/search/:value', element: <Search /> },
-
+    {
+        path: "/p-admin/*",
+        element: <AdminPanel />,
+        children: [
+            { path: "users", element: <Users /> },
+            { path: "courses", element: <AdminCourses /> },
+            { path: "menus", element: <Menus /> },
+            { path: "articles", element: <AdminArticles /> }
+        ],
+      },
 ]
+
+
 
 export default routes
