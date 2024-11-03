@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 export default function CommentsTextArea({ comments, submitComment }) {
   const [newCommentBody, setNewCommentBody] = useState("");
   const authContext = useContext(AuthContext);
-
   const onChangeHandler = (event) => {
     setNewCommentBody(event.target.value);
   };

@@ -21,7 +21,6 @@ export default function CourseInfo() {
   const [courseTeacher, setCourseTeacher] = useState({});
   const { courseName } = useParams();
 
-
   useEffect(() => {
     const localStorageData = JSON.parse(localStorage.getItem("user"));
     axios
@@ -43,9 +42,10 @@ export default function CourseInfo() {
   }, [courseName]);
   const submitComment = (newCommentBody) => {
     const localStorageData = JSON.parse(localStorage.getItem("user"));
-
+    const data = {body:newCommentBody,courseShortName:courseName,score:4};
+    const comment=JSON.stringify(data)
     axios
-      .post(CreateNewCommentURL, newCommentBody, {
+      .post(CreateNewCommentURL, comment, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorageData.token}`,
@@ -88,8 +88,8 @@ export default function CourseInfo() {
               <a href="#" className="course-info__link">
                 آموزش برنامه نویسی فرانت اند
               </a>
-              <h1 className="course-info__title">{courseDetails.name}</h1> 
-             <p className="course-info__text">{courseDetails.description}</p>
+              <h1 className="course-info__title">{courseDetails.name}</h1>
+              <p className="course-info__text">{courseDetails.description}</p>
               <div className="course-info__social-media">
                 <a href="#" className="course-info__social-media-item">
                   <i className="fab fa-telegram-plane course-info__icon"></i>

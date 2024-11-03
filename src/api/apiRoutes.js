@@ -17,6 +17,7 @@ export const PresellCoursesURL = VERSION +"courses/presell";
 export const PopularCoursesURL = VERSION +"courses/popular";
 export const ContactURL = VERSION +"contact";
 export const NewsletterURL = VERSION +"newsletters";
+export const SearchURL =(value)=> VERSION +`search/${value}`;
 
 
 
@@ -25,21 +26,3 @@ export const NewsletterURL = VERSION +"newsletters";
 
 
 
-// export const LogoutURL = VERSION +"Account/logout";
-// export const GetClientURL =(pageNumber)=> VERSION +`client/6/${pageNumber}`;
-// export const GetClientDetailURL =(id)=> VERSION +`client/${id}`;
-// export const PostClientURL =VERSION +`client`;
-
-// export const GetCoveredURL =(pageNumber)=> VERSION +`client/covered/${pageNumber}/6`;
-// export const GetScreeningURL =(pageNumber)=> VERSION +`client/screening/${pageNumber}/6`;
-
-
-// export const PostErotcURL = (id)=> VERSION +`Research/erotc/${id}`
-// export const PostScreeningURL = (id)=> VERSION +`Research/screening/${id}`
-// export const GetScreeningClientTestsURL =(id , pageNumber)=> VERSION +`Research/tests/${id}/${pageNumber}/6`;
-
-
-// export const GetCoveredClientTestsURL =(id , pageNumber)=> VERSION +`Helper/tests/${id}/${pageNumber}/6`;
-// export const PostVisitHomeTestURL =(id )=> VERSION +`Helper/visitHome/${id}`;
-// export const GetCoveredPatientDetailURL = (id)=> VERSION +`Helper/covered/${id}`;
-// export const PostCoveredPatientDetailURL = (id)=> VERSION +`Helper/covered/${id}`;

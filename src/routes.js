@@ -7,6 +7,7 @@ import Login from "./pages/Login/Login"
 import Register from "./pages/Register/Register"
 import Articles from "./pages/Articles/Articles"
 import Contact from "./pages/Contact/Contact"
+import Search from "./pages/Search/Search"
 
 const routes = [
     { path: '/', element: <Index /> },
@@ -18,6 +19,7 @@ const routes = [
     { path: '/login', element: <Login /> },
     { path: '/register', element: <Register /> },
     { path: '/contact', element: <Contact /> },
+    { path: '/search/:value', element: <Search /> },
 
 ]
 
