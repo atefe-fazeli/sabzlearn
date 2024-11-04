@@ -12,13 +12,14 @@ import {
   maxValidator,
   emailValidator,
 } from "../../validators/rules";
-
-import "./Register.css";
-import { RegisterURL } from "../../api/apiRoutes";
-import axios from "axios";
 import AuthContext from "../../context/authContext";
 
+import "./Register.css";
+
 export default function Register() {
+
+  const authContext = useContext(AuthContext)
+
   const [formState, onInputHandler] = useForm(
     {
       name: {
@@ -26,6 +27,10 @@ export default function Register() {
         isValid: false,
       },
       username: {
+        value: "",
+        isValid: false,
+      },
+      phone: {
         value: "",
         isValid: false,
       },
@@ -40,32 +45,31 @@ export default function Register() {
     },
     false
   );
-const authcontext=useContext(AuthContext)
+
   const registerNewUser = (event) => {
     event.preventDefault();
+
     const newUserInfos = {
       name: formState.inputs.name.value,
       username: formState.inputs.username.value,
       email: formState.inputs.email.value,
+      phone: formState.inputs.phone.value,
       password: formState.inputs.password.value,
       confirmPassword: formState.inputs.password.value,
     };
-    axios
-      .post(
-        RegisterURL,
-        newUserInfos,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((res) => {
-       authcontext.login(res.data. accessToken,res.data. user)
-      })
-      .catch((error)=>{
-        console.log(error.response)
+
+    fetch(`http://localhost:4000/v1/auth/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUserInfos),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        authContext.login(result.user, result.accessToken)
       });
+
   };
 
   return (
@@ -120,6 +124,21 @@ const authcontext=useContext(AuthContext)
               />
               <i className="login-form__username-icon fa fa-user"></i>
             </div>
+            <div className="login-form__username">
+              <Input
+                type="text"
+                placeholder="شماره تماس"
+                className="login-form__username-input"
+                element="input"
+                id="phone"
+                onInputHandler={onInputHandler}
+                validations={[
+                  minValidator(10),
+                  maxValidator(12),
+                ]}
+              />
+              <i className="login-form__username-icon fa fa-user"></i>
+            </div>
             <div className="login-form__password">
               <Input
                 type="text"
@@ -160,7 +179,7 @@ const authcontext=useContext(AuthContext)
               }`}
               type="submit"
               onClick={registerNewUser}
-              disabled={false}
+              disabled={!formState.isFormValid}
             >
               <i className="login-form__btn-icon fa fa-user-plus"></i>
               <span className="login-form__btn-text">عضویت</span>
