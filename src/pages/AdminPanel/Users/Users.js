@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "../../../shared/AdminPanel/DataTable/DataTable";
 import swal from "sweetalert";
-import { UsersURL } from "../../../api/apiRoutes";
+import { DeleteUserURL, UsersURL } from "../../../api/apiRoutes";
 import axios from "axios";
 export default function Users() {
   const [users, setUsers] = useState([]);
@@ -26,6 +26,30 @@ export default function Users() {
 
   const removeUser = (userID) => {
     console.log(userID);
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    swal({
+      title: "آیا از حذف مطمعنی؟",
+      icon: "warning",
+      buttons: ["نه", "آره"],
+    }).then((result) => {
+      if (result) {
+        axios
+          .delete(DeleteUserURL(userID), {
+            headers: {
+              Authorization: `Bearer ${localStorageData.token}`,
+            },
+          })
+          .then((res) => {
+            swal({
+              title: "کاربر با موفقیت حذف شد",
+              icon: "success",
+              buttons: "اوکی",
+            }).then(() => {
+              getAllUsers();
+            });
+          });
+      }
+    });
   };
 
   return (
