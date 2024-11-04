@@ -21,6 +21,7 @@ export const SearchURL =(value)=> VERSION +`search/${value}`;
 export const SeeNotificationURL = (notifID)=>VERSION +`notifications/see/${notifID}`;
 export const UsersURL = VERSION +"users";
 export const DeleteUserURL =(userID)=> VERSION +`users/${userID}`;
+export const BanUserURL =(userID)=> VERSION +`users/ban/${userID}`;
 
 
 
