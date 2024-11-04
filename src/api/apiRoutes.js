@@ -18,6 +18,7 @@ export const PopularCoursesURL = VERSION +"courses/popular";
 export const ContactURL = VERSION +"contact";
 export const NewsletterURL = VERSION +"newsletters";
 export const SearchURL =(value)=> VERSION +`search/${value}`;
+export const SeeNotificationURL = (notifID)=>VERSION +`notifications/see/${notifID}`;
 
 
 
