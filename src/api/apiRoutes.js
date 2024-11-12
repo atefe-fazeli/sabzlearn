@@ -30,4 +30,3 @@ export const BanUserURL =(userID)=> VERSION +`users/ban/${userID}`;
 
 
 
-

@@ -8,10 +8,10 @@ export default function Courses() {
 
   useEffect(() => {
     const localStorageData = localStorage.getItem("user");
-    axios.get(AllcoursesURL).then((res) => {
-      console.log(res, "res is here courses");
-      setCourses(res.data);
-    });
+    axios.get(AllcoursesURL)
+      .then((res) => {
+        setCourses(res.data)
+      });
   }, []);
 
   return (
@@ -36,14 +36,8 @@ export default function Courses() {
               <tr key={course.id}>
                 <td>{index + 1}</td>
                 <td>{course.name}</td>
-                <td>
-                  {course.price === 0
-                    ? "رایگان"
-                    : course.price.toLocaleString()}
-                </td>
-                <td>
-                  {course.isComplete === 0 ? "در حال برگزاری" : "تکمیل شده"}
-                </td>
+                <td>{course.price === 0 ? 'رایگان' : course.price.toLocaleString()}</td>
+                <td>{course.isComplete === 0 ? 'در حال برگزاری' : 'تکمیل شده'}</td>
                 <td>{course.shortName}</td>
                 <td>{course.creator}</td>
                 <td>{course.categoryID}</td>

@@ -65,7 +65,7 @@ export default function Sidebar() {
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="category">
               <span>دسته‌بندی‌ها</span>
             </a>
           </li>
